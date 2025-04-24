@@ -1,0 +1,63 @@
+### Create a new employee form
+POST http://localhost:3000/api/employees
+Content-Type: application/json
+
+{
+    "EmployeeCode": 110,
+    "Name": "John Doe",
+    "DateofBirth": "1990-05-15",
+    "DateofJoining": "2015-08-01",
+    "Designation": "Senior Engineer",
+    "Department": "R&D",
+    "AssesmentPeriod": "2024-12-31",
+    "Salary": 75000,
+    "Qualification": "B.Tech",
+    "HigherQualification": "M.Tech",
+    "Specialization": "Artificial Intelligence",
+    "PeriodOfService": 9,
+    "Experience": {
+        "Teaching": { "Years": 3, "Months": 6 },
+        "Industrial": { "Years": 4, "Months": 2 },
+        "Research": { "Years": 1, "Months": 8 }
+    },
+    "TotalExp": { "Years": 9, "Months": 4 },
+    "Address": [
+        {
+            "HNo": "123",
+            "Street": "Main Street",
+            "City": "New York",
+            "State": "NY",
+            "Pincode": 10001
+        }
+    ],
+    "Leaves": {
+        "CLs": 5,
+        "ELs": 10,
+        "HPLs": 7,
+        "OD": 2,
+        "OtherLeaves": {
+            "ML": 1,
+            "PL": 2,
+            "SL": 3
+        }
+    }
+}
+
+### Get all employee forms
+GET http://localhost:3000/api/employees
+
+### Get a specific employee form
+GET http://localhost:3000/api/employees/101
+
+### Update an employee form
+PUT http://localhost:3000/api/employees/101
+Content-Type: application/json
+
+{
+    "Salary": 80000,
+    "PeriodOfService": 10,
+    "TotalExp": { "Years": 10, "Months": 0 }
+}
+
+### Delete an employee form
+DELETE http://localhost:3000/api/employees/101
