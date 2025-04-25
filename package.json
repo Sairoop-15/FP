@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "employee-management-backend": "file:",
     "express": "^4.21.2",
     "mongoose": "^8.13.1"
   }

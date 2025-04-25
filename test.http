@@ -61,3 +61,18 @@ Content-Type: application/json
 
 ### Delete an employee form
 DELETE http://localhost:3000/api/employees/101
+
+### phd status
+POST http://localhost:3000/faculty-dev/phd-status
+Content-Type: application/json
+
+{
+  "registered": true,
+  "clearedPrePhd": true,
+  "thesisSubmitted": false,
+  "awarded": false,
+  "totalScore": 45
+}
+
+###
+GET http://localhost:3000/faculty-dev/phd-status

@@ -7,6 +7,7 @@ import EditorialContribution from '../schemas/EditorialContribution.js';
 import TrainingAttended from '../schemas/trainingAttended.js';
 
 const router = express.Router();
+router.use(express.json())
 
 router.get('/phd-status', async (req, res) => {
   try {

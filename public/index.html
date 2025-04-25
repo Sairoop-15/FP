@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Activities</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .no-data {
+            padding: 10px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            margin-top: 10px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Faculty Activities</h1>
+
+    <button class="button" id="phd-status-btn">View PhD Status</button>
+    
+    <div class="content" id="phd-status-content">
+        <!-- PhD Status Table will appear here -->
+    </div>
+
+    <script>
+        document.getElementById('phd-status-btn').addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://localhost:3000/faculty-dev/phd-status');
+                const data = await response.json();
+
+                const contentDiv = document.getElementById('phd-status-content');
+                contentDiv.innerHTML = ''; // Clear previous data
+
+                if (data.length === 0) {
+                    contentDiv.innerHTML = '<div class="no-data">No PhD status found.</div>';
+                } else {
+                    // Create table
+                    const table = document.createElement('table');
+                    const thead = document.createElement('thead');
+                    thead.innerHTML = `
+                        <tr>
+                            <th>Registered</th>
+                            <th>Cleared Pre-PhD</th>
+                            <th>Thesis Submitted</th>
+                            <th>Awarded</th>
+                            <th>Total Score</th>
+                        </tr>
+                    `;
+                    table.appendChild(thead);
+
+                    const tbody = document.createElement('tbody');
+                    data.forEach(item => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${item.registered}</td>
+                            <td>${item.clearedPrePhd}</td>
+                            <td>${item.thesisSubmitted}</td>
+                            <td>${item.awarded}</td>
+                            <td>${item.totalScore || 'N/A'}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+
+                    table.appendChild(tbody);
+                    contentDiv.appendChild(table);
+                }
+            } catch (error) {
+                console.error('Error fetching PhD status:', error);
+                document.getElementById('phd-status-content').innerHTML = 
+                    '<div class="no-data">Error fetching data. Make sure the backend is running.</div>';
+            }
+        });
+    </script>
+
+</body>
+</html>

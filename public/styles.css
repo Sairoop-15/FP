@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .card-container {
+    margin-top: 20px;
+    display: grid;
+    gap: 15px;
+  }
+  
+  .card {
+    padding: 15px;
+    background-color: #e3f2fd;
+    border-left: 4px solid #1976d2;
+    border-radius: 6px;
+  }
+  

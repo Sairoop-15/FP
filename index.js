@@ -7,8 +7,15 @@ import facultyDevRoutes from './Routes/FacultyDev.js';
 import governanceRoutes from './Routes/Governance.js';
 import supplementaryRoutes from './Routes/Supplementary.js';
 import summaryRoutes from './Routes/Summary.js';
+import path from 'path';
+
+import cors from 'cors';
 
 const app = express();
+const __dirname = path.resolve();
+app.use(cors());
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 app.use('/teaching', teachingRoutes);
@@ -20,8 +27,6 @@ app.use('/summary', summaryRoutes);
 
 const mongoURI = 'mongodb://127.0.0.1:27017/FieldProj';
 mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
@@ -88,7 +93,7 @@ app.get('/api/employees/:id', async (req, res) => {
 app.put('/api/employees/:id', async (req, res) => {
     try {
         const updatedEmployee = await Form.findOneAndUpdate(
-            { EmployeeCode: parseInt(req.params.id) }, // Ensure EmployeeCode is treated as a number
+            { EmployeeCode: parseInt(req.params.id) },
             req.body,
             { new: true }
         );
